@@ -84,7 +84,7 @@ readonly class Api {
         );
         $json = Api::request($params);
         if ($json === false) { return false; }
-        if (count($json['query']['pages'][0]['links']) === 0) { return 0; }
+        if ($json['query']['pages'][0]['missing'] || count($json['query']['pages'][0]['links']) === 0) { return 0; }
         return array_map(fn($i) => $i['title'], $json['query']['pages'][0]['links']);
     }
 }
@@ -240,7 +240,8 @@ class Game {
                         return;
                     }
                     if ($links === 0) {
-                        IO::p('Ссылок на странице не найдено, переход отменен', Format::Warn);
+                        IO::p('Ссылок на странице не найдено, переход отменен. Если проблема повторяется, используйте /reset.', Format::Warn);
+                        if ($i->steps == 0) { return; }
                         break;
                     }
                     $i->move($this->choose_link($links));
