@@ -80,11 +80,11 @@ readonly class Api {
             'titles' => $current,
             'prop' => 'links',
             'pllimit' => 'max',
-            'redirects'
+            'redirects' => ''
         );
         $json = Api::request($params);
         if ($json === false) { return false; }
-        if ($json['query']['pages'][0]['missing'] || count($json['query']['pages'][0]['links']) === 0) { return 0; }
+        if (isset($json['query']['pages'][0]['missing']) || count($json['query']['pages'][0]['links']) === 0) { return 0; }
         return array_map(fn($i) => $i['title'], $json['query']['pages'][0]['links']);
     }
 }
