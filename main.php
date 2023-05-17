@@ -267,7 +267,7 @@ class Game {
                 $ii = $i + 1;
                 IO::p("$ii. $links[$i]");
             }
-            $input = readline("номер страницы — выбрать / [ENTER] — загрузить еще > ");
+            $input = readline("[номер страницы] — выбрать / [ENTER] — загрузить еще > ");
             echo("\n");
             if ($input !== '') {
                 if (is_numeric($input) && isset($links[(int)$input - 1])) {
