@@ -141,7 +141,7 @@ readonly class App {
                         break;
                     }
                     IO::p("    {$pages[0]} -> {$pages[1]}");
-                    $game->players[] = new Player($name, 'Теоретическая физика', 'Энтропия');
+                    $game->players[] = new Player($name, pages[0], pages[1]);
                     IO::p('Игрок добавлен.', Format::Success);
                     break;
                 case '/rmplayer':
